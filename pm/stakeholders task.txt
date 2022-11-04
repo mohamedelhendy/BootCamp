@@ -1,0 +1,7 @@
+Digital card project stakeholders :
+1- customer
+2- sponsor
+3- development team
+4- google maps 
+5- shops which will offer the discounts
+6- management and marketing team

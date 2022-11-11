@@ -1,0 +1,59 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+h1 {
+  padding: 5px;
+  margin: 10px 0%;
+  text-align: center;
+}
+h2{
+  padding: 2%;
+}
+nav {
+  padding: 20px;
+  text-align: right;
+  background-color: black;
+}
+nav li {
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+  font:bolder;
+}
+img {
+  width: 20%;
+  padding: 20px 20%;
+  display: inline-block;
+}
+table {
+  display:inline-block;
+  text-align: top;
+  padding-bottom: 10%;
+}
+tr > :nth-child(1) {
+  font: bolder;
+  font-size: large;
+  color: red;
+  width: 200px;
+}
+li{
+  padding: 5px 20px;
+}
+div{
+  padding-bottom: 2%;
+}
+button{
+  padding: 0.5%;
+  margin: 1%;
+  display: inline-block;
+}
+ul{
+  display: inline-block;
+}
+.similar{
+  padding: 20px 40%;
+}

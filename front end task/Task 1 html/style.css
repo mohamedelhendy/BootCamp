@@ -1,0 +1,33 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+h1 {
+  padding: 5px;
+  margin: 10px 0%;
+  text-align: center;
+}
+img {
+  padding: 5px;
+  margin: 10px 35rem;
+  display: inline-block;
+  border: 5px solid blue;
+}
+tr > :nth-child(1) {
+  font: bolder;
+  font-size: large;
+  color: red;
+  width: 200px;
+}
+li {
+  padding: 5px 5px;
+}
+div {
+  padding-bottom: 2%;
+}
+button {
+  padding: 0.5%;
+  margin: 1%;
+  display: inline-block;
+}

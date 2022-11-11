@@ -12,17 +12,20 @@ h2{
   padding: 2%;
 }
 nav {
-  padding: 20px;
   text-align: right;
   background-color: black;
 }
 nav li {
+  padding: 25px;
   display: inline-block;
-  margin: 5px;
   cursor: pointer;
   color: white;
   font-size: 20px;
-  font:bolder;
+  font-weight: 500;
+}
+nav li:hover{
+  color: black;
+  background-color: white;
 }
 img {
   width: 20%;

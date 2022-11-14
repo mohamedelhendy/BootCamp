@@ -11,6 +11,13 @@ h1 {
 h2 {
   padding: 2%;
 }
+.logo{
+  background-color: red;
+  color: white;
+  font-weight: 700;
+  font-style: italic;
+  margin-top: 15px;
+}
 nav {
   background-color: black;
   gap: 10px;
@@ -19,10 +26,7 @@ nav {
   align-content: center;
 }
 nav h1{
-  color: white;
-  font-weight: 700;
-  font-style: italic;
-  margin-top: 15px;
+
 }
 nav input{
   margin-top: 25px;

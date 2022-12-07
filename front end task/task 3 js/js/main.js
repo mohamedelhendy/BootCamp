@@ -5,6 +5,7 @@ const addSingleProductToCart = (product) => {
       products[oldProductIndex].quantity += 1;
     } else {
       products.push({ ...product, quantity: 1 });
+      console.log({ product, quantity: 1 })
     }
     localStorage.setItem("products", JSON.stringify(products));
   };

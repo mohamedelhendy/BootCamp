@@ -122,39 +122,37 @@ const loginToken=async()=>{
   })  
   
   let res = await login.json();
-  console.log(res.token);
   return res.token;
   }
 
-  let token =loginToken();
-  console.log(token);
-  localStorage.setItem("token", JSON.stringify(token));
-
-const order=async()=>{
+  //localStorage.setItem("token", JSON.stringify(token));
+  const getorderDetails=()=>{
+    let res=[];
+   for(let i=0;i<cart.products.length;i++){
+      res.push({
+        "product_id": cart.products[i].id,
+        "price": cart.products[i].price,
+        "qty": cart.products[i].quantity
+      })
+    } return res
+  }
+  let date= new Date();
+  const order=async()=>{
+    console.log(getorderDetails()[1])
+    let token =await loginToken();
   let addOrder = await fetch(`http://localhost:5000/api/orders`,{
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
-          'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NmFjMjNiYjg2MmUwMWZlNGI2NTM1IiwiZW1haWwiOiJyYW15bWlicmFoaW1AeWFob28uY29tIiwiaWF0IjoxNjcwNTA2MzA4LCJleHAiOjE2NzA1MTM1MDh9.tlWSIE41tU2U6O6iufFydTKo_jfbskvCxC04_XjEX_8"
+          'x-access-token': token
       },
       body:JSON.stringify({
-        "sub_total_price": 100.0,
-        "shipping": 10.0,
-        "total_price": 110.0,
+        "sub_total_price": cart.subTotal,
+        "shipping": cart.shipping,
+        "total_price": cart.subTotal+cart.shipping,
         "user_id": "6346ac23bb862e01fe4b6535",
-        "order_date": "2022-01-01",
-        "order_details": [
-        {
-            "product_id": "6346c15ea060efd7cae40589",
-            "price": 25,
-            "qty": 2
-        },
-        {
-            "product_id": "6346c186a060efd7cae4058b",
-            "price": 25,
-            "qty": 2
-        }
-    ],
+        "order_date": date,
+        "order_details": getorderDetails(),
     "shipping_info": {
         "first_name": "Ramy",
         "last_name": "Ibrahim",
@@ -169,7 +167,7 @@ const order=async()=>{
     }
   })
   })
-  let data = addOrder.json()
+  let data =await addOrder.json()
   console.log(data)
 }
 

@@ -138,7 +138,6 @@ const loginToken=async()=>{
   }
   let date= new Date();
   const order=async()=>{
-    console.log(getorderDetails()[1])
     let token =await loginToken();
   let addOrder = await fetch(`http://localhost:5000/api/orders`,{
       method: 'POST',
@@ -169,6 +168,8 @@ const loginToken=async()=>{
   })
   let data =await addOrder.json()
   console.log(data)
+  if(data.status==="success"){
+    alert("order added successfully");}
 }
-
-order();
+proceed = document.getElementById("proceed");
+proceed.addEventListener('click',order);

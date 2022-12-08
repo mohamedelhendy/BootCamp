@@ -135,9 +135,9 @@ const order=async()=>{
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
-          'x-access-token': `${token}`
+          'x-access-token': "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjM0NmFjMjNiYjg2MmUwMWZlNGI2NTM1IiwiZW1haWwiOiJyYW15bWlicmFoaW1AeWFob28uY29tIiwiaWF0IjoxNjcwNTA2MzA4LCJleHAiOjE2NzA1MTM1MDh9.tlWSIE41tU2U6O6iufFydTKo_jfbskvCxC04_XjEX_8"
       },
-      body:{
+      body:JSON.stringify({
         "sub_total_price": 100.0,
         "shipping": 10.0,
         "total_price": 110.0,
@@ -167,7 +167,7 @@ const order=async()=>{
         "state": "Zamalek",
         "zip_code": "11211"
     }
-  }  
+  })
   })
   let data = addOrder.json()
   console.log(data)

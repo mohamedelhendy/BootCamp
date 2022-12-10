@@ -11,6 +11,13 @@ import { ShopComponent } from './components/shop/shop.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { CategoryComponent } from './components/category/category.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { ShopDetailsComponent } from './components/shop-details/shop-details.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductsComponent } from './components/products/products.component';
+import { StarsComponent } from './components/stars/stars.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,12 +28,19 @@ import { ContactComponent } from './components/contact/contact.component';
     ShopComponent,
     CartComponent,
     CheckoutComponent,
-    ContactComponent
+    ContactComponent,
+    CategoryComponent,
+    CategoriesComponent,
+    ShopDetailsComponent,
+    ProductComponent,
+    ProductsComponent,
+    StarsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

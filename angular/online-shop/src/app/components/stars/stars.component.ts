@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class StarsComponent {
   @Input() rating:number=0;
-  @Input() ratingCount:number=0;
+  @Input() rating_count:number=0;
   getClass(r:number) {
     if (r <= this.rating) return"fa fa-star text-primary mr-1";
     if (r<= this.rating+ 0.5) return "fa fa-star-half-alt text-primary mr-1";

@@ -7,7 +7,7 @@ import { Product } from 'src/app/interfaces/product';
   styleUrls: ['./shop-details.component.css']
 })
 export class ShopDetailsComponent {
- product :Product ={id:1,name:"product-1",price:1100,imageUrl:"assets/img/product-1.jpg",discount: 0.15,rating:3,ratingCount:99}
+ product :Product ={id:1,name:"product-1",price:1100,image:"assets/img/product-1.jpg",discount: 0.15,rating:3,rating_count:99}
 
  ngOnInit(): void {
   /* $('.related-carousel').owlCarousel({

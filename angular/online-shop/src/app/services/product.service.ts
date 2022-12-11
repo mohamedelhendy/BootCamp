@@ -7,8 +7,8 @@ import { Product } from '../interfaces/product';
   providedIn: 'root',
 })
 export class ProductService {
-  cartProducts :Product[] =[];
-  likedProducts :Product[] =[];
+  cartProducts :Product[] =JSON.parse(localStorage.getItem("Cartproducts") ?? "[]");
+  likedProducts :Product[] =JSON.parse(localStorage.getItem("likedProducts") ?? "[]");
   constructor(private httpClient: HttpClient) {}
 
   getFeatured() {
@@ -19,8 +19,10 @@ export class ProductService {
   }
   addProduct(product:Product){
     this.cartProducts.push(product);
+    localStorage.setItem("Cartproducts", JSON.stringify(this.cartProducts));
   }
   addLike(product:Product){
     this.likedProducts.push(product);
+    localStorage.setItem("likedProducts", JSON.stringify(this.likedProducts));
   }
 }

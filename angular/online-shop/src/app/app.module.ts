@@ -18,6 +18,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
 import { StarsComponent } from './components/stars/stars.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CartTableComponent } from './components/cart-table/cart-table.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HttpClientModule } from '@angular/common/http';
     ShopDetailsComponent,
     ProductComponent,
     ProductsComponent,
-    StarsComponent
+    StarsComponent,
+    CartTableComponent,
   ],
   imports: [
     BrowserModule,

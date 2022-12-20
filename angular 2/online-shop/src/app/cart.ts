@@ -1,9 +1,11 @@
 import { CartLine } from "./interfaces/cart-line";
 import { StorageService } from 'src/app/services/storage.service';
-
+import { Injectable } from "@angular/core";
+@Injectable({
+    providedIn: 'root'
+  })
 export class Cart  {
-    constructor(private cartline:CartLine,
-    private storageService:StorageService){
+    constructor(private storageService:StorageService){
 
     }
     cartLines: CartLine[]=this.storageService.getCartLines();

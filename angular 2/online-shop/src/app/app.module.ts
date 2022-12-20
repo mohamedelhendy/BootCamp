@@ -25,6 +25,7 @@ import { ProductsPaginationComponent } from './components/products-pagination/pr
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { Cart } from './cart';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { RegisterComponent } from './components/register/register.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [Cart],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

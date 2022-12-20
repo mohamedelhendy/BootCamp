@@ -4,7 +4,7 @@
     <div class="col-12">
       <nav class="breadcrumb bg-light mb-30">
         <a class="breadcrumb-item text-dark" href="#">Home</a>
-        <a class="breadcrumb-item text-dark" href="#">Shop</a>
+        <a class="breadcrumb-item text-dark" href="/shop">Shop</a>
         <span class="breadcrumb-item active">Checkout</span>
       </nav>
     </div>
@@ -15,7 +15,7 @@
 <!-- Checkout Start -->
 <div class="container-fluid">
   <div class="row px-xl-5">
-    <div class="col-lg-8">
+    <form class="col-lg-8" [formGroup]="addOrderForm" (ngSubmit)="addOrder()">
       <h5 class="section-title position-relative text-uppercase mb-3">
         <span class="bg-secondary pr-3">Billing Address</span>
       </h5>
@@ -23,79 +23,112 @@
         <div class="row">
           <div class="col-md-6 form-group">
             <label>First Name</label>
-            <input class="form-control" type="text" placeholder="John" />
+            <input class="form-control" formControlName="first_name" type="text" placeholder="John"  />
+            <ng-container *ngIf="addOrderForm.controls['first_name']?.touched">
+              <span
+                class="text-danger"
+                *ngIf="addOrderForm.controls['first_name']?.errors?.['required']"
+                >Please enter your first Name</span
+              >
+            </ng-container>
           </div>
           <div class="col-md-6 form-group">
             <label>Last Name</label>
-            <input class="form-control" type="text" placeholder="Doe" />
+            <input class="form-control" formControlName="last_name" type="text" placeholder="Doe" />
+            <ng-container *ngIf="addOrderForm.controls['last_name']?.touched">
+              <span
+                class="text-danger"
+                *ngIf="addOrderForm.controls['last_name']?.errors?.['required']"
+                >Please enter your Last Name</span
+              >
+            </ng-container>
           </div>
           <div class="col-md-6 form-group">
             <label>E-mail</label>
-            <input
-              class="form-control"
-              type="text"
-              placeholder="example@email.com"
-            />
+            <input class="form-control" formControlName="email" type="text" placeholder="email"  />
+            <ng-container *ngIf="addOrderForm.controls['email']?.touched">
+              <span
+                class="text-danger"
+                *ngIf="addOrderForm.controls['first_name']?.errors?.['required']"
+                >Please enter your first Name</span
+              >
+              <span
+            class="text-danger"
+            *ngIf="addOrderForm.controls['email']?.errors?.['email']"
+            >Please enter a valid email address</span
+          >
+            </ng-container>
           </div>
           <div class="col-md-6 form-group">
-            <label>Mobile No</label>
-            <input
-              class="form-control"
-              type="text"
-              placeholder="+123 456 789"
-            />
+            <label>Mobile number</label>
+            <input class="form-control" formControlName="mobile_number"  placeholder="mobile_number" />
+            <ng-container *ngIf="addOrderForm.controls['mobile_number']?.touched">
+              <span
+                class="text-danger"
+                *ngIf="addOrderForm.controls['mobile_number']?.errors?.['required']"
+                >Please enter your mobile number</span
+              >
+            </ng-container>
           </div>
           <div class="col-md-6 form-group">
             <label>Address Line 1</label>
-            <input class="form-control" type="text" placeholder="123 Street" />
+            <input class="form-control" formControlName="address1"  placeholder="address1" />
+            <ng-container *ngIf="addOrderForm.controls['address1']?.touched">
+              <span
+                class="text-danger"
+                *ngIf="addOrderForm.controls['address1']?.errors?.['required']"
+                >Please enter your address 1</span>
+            </ng-container>
           </div>
           <div class="col-md-6 form-group">
             <label>Address Line 2</label>
-            <input class="form-control" type="text" placeholder="123 Street" />
+            <input class="form-control" formControlName="address2"  placeholder="address2" />
+            <ng-container *ngIf="addOrderForm.controls['address2']?.touched">
+              <span
+                class="text-danger"
+                *ngIf="addOrderForm.controls['address2']?.errors?.['required']"
+                >Please enter your address 2</span>
+            </ng-container>
           </div>
           <div class="col-md-6 form-group">
             <label>Country</label>
-            <select class="custom-select">
-              <option selected>Egypt</option>
-              <option>USA</option>
-              <option>Algeria</option>
-            </select>
+            <input class="form-control" formControlName="country"  placeholder="country" />
+            <ng-container *ngIf="addOrderForm.controls['country']?.touched">
+              <span
+                class="text-danger"
+                *ngIf="addOrderForm.controls['country']?.errors?.['required']"
+                >Please enter your country</span>
+            </ng-container>
           </div>
           <div class="col-md-6 form-group">
             <label>City</label>
-            <input class="form-control" type="text" placeholder="New York" />
+            <input class="form-control" formControlName="city"  placeholder="city" />
+            <ng-container *ngIf="addOrderForm.controls['city']?.touched">
+              <span
+                class="text-danger"
+                *ngIf="addOrderForm.controls['city']?.errors?.['required']"
+                >Please enter your city</span>
+            </ng-container>
           </div>
           <div class="col-md-6 form-group">
             <label>State</label>
-            <input class="form-control" type="text" placeholder="New York" />
+            <input class="form-control" formControlName="state"  placeholder="state" />
+            <ng-container *ngIf="addOrderForm.controls['state']?.touched">
+              <span
+                class="text-danger"
+                *ngIf="addOrderForm.controls['state']?.errors?.['required']"
+                >Please enter your state</span>
+            </ng-container>
           </div>
           <div class="col-md-6 form-group">
-            <label>ZIP Code</label>
-            <input class="form-control" type="text" placeholder="123" />
-          </div>
-          <div class="col-md-12 form-group">
-            <div class="custom-control custom-checkbox">
-              <input
-                type="checkbox"
-                class="custom-control-input"
-                id="newaccount"
-              />
-              <label class="custom-control-label" for="newaccount"
-                >Create an account</label
-              >
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="shipto" />
-              <label
-                class="custom-control-label"
-                for="shipto"
-                data-toggle="collapse"
-                data-target="#shipping-address"
-                >Ship to different address</label
-              >
-            </div>
+            <label>Zip code</label>
+            <input class="form-control" formControlName="zip_code"  placeholder="zip_code" />
+            <ng-container *ngIf="addOrderForm.controls['zip_code']?.touched">
+              <span
+                class="text-danger"
+                *ngIf="addOrderForm.controls['zip_code']?.errors?.['required']"
+                >Please enter your zip_code</span>
+            </ng-container>
           </div>
         </div>
       </div>
@@ -169,8 +202,7 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-lg-4">
+    <div class="col-lg-6">
       <h5 class="section-title position-relative text-uppercase mb-3">
         <span class="bg-secondary pr-3">Order Total</span>
       </h5>
@@ -244,12 +276,14 @@
               >
             </div>
           </div>
-          <button class="btn btn-block btn-primary font-weight-bold py-3">
+          <button class="btn btn-block btn-primary font-weight-bold py-3"type="submit"
+          [disabled]="!addOrderForm.valid">
             Place Order
           </button>
         </div>
       </div>
     </div>
+  </form>
   </div>
 </div>
 <!-- Checkout End -->

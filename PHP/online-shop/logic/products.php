@@ -1,17 +1,18 @@
 <?php
-function getProducts(){
-    $products = [
-        ['name' => 'Product1', 'image_url' => 'img/product-1.jpg', 'price' => 100,'discount'=>0.1,'rating'=>0,'rating_count'=>100,'is_featured'=>true,'is_recent'=>false],
-        ['name' => 'Product2', 'image_url' => 'img/product-2.jpg', 'price' => 110,'discount'=>0.125,'rating'=>1,'rating_count'=>90,'is_featured'=>true,'is_recent'=>false],
-        ['name' => 'Product3', 'image_url' => 'img/product-3.jpg', 'price' => 120,'discount'=>0.2,'rating'=>1.5,'rating_count'=>95,'is_featured'=>true,'is_recent'=>false],
-        ['name' => 'Product4', 'image_url' => 'img/product-4.jpg', 'price' => 130,'discount'=>0.1,'rating'=>4.5,'rating_count'=>100,'is_featured'=>true,'is_recent'=>false],
-        ['name' => 'Product5', 'image_url' => 'img/product-5.jpg', 'price' => 140,'discount'=>0.1,'rating'=>3.5,'rating_count'=>97,'is_featured'=>false,'is_recent'=>true],
-        ['name' => 'Product6', 'image_url' => 'img/product-6.jpg', 'price' => 150,'discount'=>0.2,'rating'=>3,'rating_count'=>99,'is_featured'=>false,'is_recent'=>true],
-        ['name' => 'Product2', 'image_url' => 'img/product-2.jpg', 'price' => 160,'discount'=>0.3,'rating'=>4,'rating_count'=>98,'is_featured'=>false,'is_recent'=>true],
-        ['name' => 'Product1', 'image_url' => 'img/product-1.jpg', 'price' => 170,'discount'=>0.2,'rating'=>5,'rating_count'=>99,'is_featured'=>false,'is_recent'=>true],
-    ];
-    return $products;
+require_once(BASE_PATH . 'dal/dal.php');
+function getProducts($where = '1=1', $limit = '')
+{
+    $query = "SELECT p.*,c.name category_name,s.name size_name,cl.name color_name,r.rating,r.rating_count FROM 
+    products p JOIN categories c ON p.category_id=c.id
+    JOIN sizes s on s.id = p.size_id
+    JOIN colors cl on cl.id = p.color_id
+	LEFT JOIN (SELECT product_id,AVG(rate) rating,COUNT(0) rating_count FROM `ratings` GROUP BY product_id) r ON r.product_id = p.id
+    WHERE $where 
+    $limit";
+    return get_rows($query);
 }
+
+//require_once('cart.php');
 function setStars($product)
 {
     $rate = $product['rating'];
@@ -31,7 +32,7 @@ function display_product($product)
         <div class="product-img position-relative overflow-hidden">
             <img class="img-fluid w-100" src="' . $product['image_url'] . '" alt="" />
             <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-shopping-cart"></i></a>
+                <a class="btn btn-outline-dark btn-square" href="addproduct.php?id=' . $product['id'] .'"><i class="fa fa-shopping-cart"></i></a>
                 <a class="btn btn-outline-dark btn-square" href="#"><i class="far fa-heart"></i></a>
                 <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-sync-alt"></i></a>
                 <a class="btn btn-outline-dark btn-square" href="#"><i class="fa fa-search"></i></a>
@@ -50,4 +51,14 @@ function display_product($product)
         </div>
     </div>
 </div>';
+}
+
+function getProductById($id)
+{
+    $products = getProducts();
+    for($i=0;$i<count($products);$i++){
+        if($products[$i]['id']===$id){
+            return $products[$i];
+        }
+    }
 }

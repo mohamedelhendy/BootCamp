@@ -8,11 +8,7 @@ use Illuminate\Http\Request;
 class adminController extends Controller
 {
     function admin (){
-        return view('admin');
-    
-    }
-    function categories (){
-        return view('Acategories')->with('categories',Category::all());
+        return view('admin.admin');
     
     }
 }

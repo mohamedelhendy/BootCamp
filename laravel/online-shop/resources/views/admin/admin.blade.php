@@ -1,5 +1,6 @@
 @extends('layouts.adminMain')
 @section('content')
+<body class="hold-transition sidebar-mini layout-fixed">
 <div class="content-wrapper">
     <section class="content">
         <div class="container-fluid">

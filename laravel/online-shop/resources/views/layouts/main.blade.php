@@ -217,22 +217,16 @@
               id="navbarCollapse"
             >
               <div class="navbar-nav mr-auto py-0">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="shop.html" class="nav-item nav-link">Shop</a>
-                <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
+                <a href="{{ url('') }}" class="nav-item nav-link active">Home</a>
+                <a href="{{ url('shop') }}" class="nav-item nav-link">Shop</a>
                 <div class="nav-item dropdown">
-                  <a
-                    href="#"
-                    class="nav-link dropdown-toggle"
-                    data-toggle="dropdown"
-                    >Pages <i class="fa fa-angle-down mt-1"></i
-                  ></a>
+                  <a href="#"class="nav-link dropdown-toggle"data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
                   <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                    <a href="checkout.html" class="dropdown-item">Checkout</a>
+                    <a href="{{ url('cart') }}" class="nav-item nav-link">Cart</a>
+                    <a href="{{ url('checkout') }}" class="nav-item nav-link">Checkout</a>
                   </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <a href="{{ url('contact') }}" class="nav-item nav-link">Contact</a>
               </div>
               <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                 <a href="" class="btn px-0">

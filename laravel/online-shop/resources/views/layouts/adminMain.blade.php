@@ -50,7 +50,7 @@
               alt="User Image" />
           </div>
           <div class="info">
-            <a href="{{url('#')}}" class="d-block">
+            <a href="{{url('admin')}}" class="d-block">
               <h5>Mohamed Elhendy</h5>
             </a>
           </div>
@@ -66,27 +66,27 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('products')}}" class="nav-link">
+              <a href="{{url('admin/products')}}" class="nav-link">
                 <i class="fas fa-bars"></i>
                 <p>Products</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{url('users')}}" class="nav-link">
+              <a href="{{url('admin/users')}}" class="nav-link">
                 <i class="fas fa-bars"></i>
                 <p>Users</p>
               </a>
             </li>
 
             <li class="nav-item">
-              <a href="{{url('sizes')}}" class="nav-link">
+              <a href="{{url('admin/sizes')}}" class="nav-link">
                 <i class="fas fa-bars"></i>
                 <p>Sizes</p>
               </a>
             </li>
 
             <li class="nav-item">
-              <a href="{{url('colors')}}" class="nav-link">
+              <a href="{{url('admin/colors')}}" class="nav-link">
                 <i class="fas fa-bars"></i>
                 <p>Colors</p>
               </a>

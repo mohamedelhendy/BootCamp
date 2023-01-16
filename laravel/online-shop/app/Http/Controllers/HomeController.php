@@ -19,6 +19,44 @@ class HomeController extends Controller
         ]);
 
     }
+    function sendOrder($request)
+    {
+        $rules = [
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'mobile' => 'required',
+            'address1' => 'required',
+            'country' => 'required',
+            'city' => 'required',
+            'state' => 'required',
+            'zipcode' => 'required'
+        ];
+        $request->validate($rules);
+        dd($_REQUEST);
+
+    }
+    function checkout()
+    {$products = Product::getCart();
+        //subtotal
+        $subTotal = 0;
+        foreach ($products as $product) {
+            $subTotal += $product['quantity'] * ($product['price'] * (1 - $product['discount']));
+        }
+        //shipping
+        $shipping = 0;
+        foreach ($products as $product) {
+            $shipping += $product['quantity'] * 10;
+        }
+        $total = $shipping + $subTotal;
+        return view('checkout')->with([
+            'products' => $products,
+            'total'=> $total,
+            'subTotal'=> $subTotal,
+            'shipping'=> $shipping
+        ]);
+
+    }
     function cart()
     {
         $products = Product::getCart();

@@ -7,6 +7,7 @@ use App\Models\Color;
 use App\Models\Product;
 use App\Models\Size;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ProductsController extends Controller
 {
@@ -15,9 +16,14 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+    }
     public function index()
     {
         //
+        if (!Gate::allows('is_admin')) {
+            abort(403);
+        }
         return view('admin.products.index')->with('products', Product::paginate(10));
     }
 
@@ -61,7 +67,7 @@ class ProductsController extends Controller
         $product['is_featured'] = $request['is_featured'] ? 1 : 0;
 
         $product->save();
-        return redirect()->route('admin.products');
+        return redirect()->route('products.index');
         //route('admin.products')
     }
 
@@ -120,7 +126,7 @@ class ProductsController extends Controller
         $product['is_recent'] = $request['is_recent'] ? 1 : 0;
         $product['is_featured'] = $request['is_featured'] ? 1 : 0;
         $product->save();
-        return redirect()->route('admin.products');
+        return redirect()->route('products.index');
 
     }
 
@@ -135,6 +141,7 @@ class ProductsController extends Controller
         //
         $product = Product::findOrFail($id);
         Product::destroy($id);
-        return redirect()->route('admin.products')->with('success','Record has been deleted');
+        return redirect()->route('products.index')->with('success','Record has been deleted');
     }
 }
+    

@@ -30,9 +30,9 @@
                                     <tr>
                                         <td>{{ $product['id'] }}</td>
                                         <td><a href="{{url('admin/products/'.$product['id'])}}"><u>{{ $product['name'] }}</u></a></td>
-                                        <td>{{ $product['name'] }}</td>
-                                        <td>{{ $product['name'] }}</td>
                                         <td><img src="{{asset('storage/' . $product['image'])}}" width="150px"></td>
+                                        <td>{{ $product['category']['name'] }}</td>
+                                        <td>{{ $product['price'] }}</td>
                                         <td scope="col">
                                             <a class="btn btn-success" href="{{url('admin/products/'.$product['id'].'/edit')}}">
                                                 <h6 class="fa fa-pen text-white"></h6>

@@ -158,7 +158,7 @@
                                 <img class="img-fluid w-100" src="{{ asset('storage/' . $product['image']) }}"
                                     alt="" />
                                 <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href="#"><i
+                                    <a class="btn btn-outline-dark btn-square" onclick="addProductToSession({{ $product['id'] }})"><i
                                             class="fa fa-shopping-cart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href="#"><i
                                             class="far fa-heart"></i></a>
@@ -232,7 +232,7 @@
                                 <img class="img-fluid w-100" src="{{ asset('storage/' . $product['image']) }}"
                                     alt="" />
                                 <div class="product-action">
-                                    <a class="btn btn-outline-dark btn-square" href="#"><i
+                                    <a class="btn btn-outline-dark btn-square" onclick="addProductToSession({{ $product['id'] }})"><i
                                             class="fa fa-shopping-cart"></i></a>
                                     <a class="btn btn-outline-dark btn-square" href="#"><i
                                             class="far fa-heart"></i></a>
@@ -301,3 +301,19 @@
     </div>
     <!-- Vendor End -->
 @endsection
+@section('scripts')
+    <script>
+        function addProductToSession(id) {
+            $.ajax({
+                url: '{{ url('/add-product') }}',
+                data: {
+                    id: id
+                },
+                success: (data) => {
+                    console.log(data);
+                }
+            })
+        }
+    </script>
+@endsection
+

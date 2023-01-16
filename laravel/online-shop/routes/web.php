@@ -19,6 +19,11 @@ use App\Http\Controllers\CategoriesController;
 */
 
 Route::get('/', [HomeController::class,'index']);
+Route::get('/add-product', [HomeController::class, 'add_product']);
+Route::get('/shop', [HomeController::class, 'shop']);
+Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
+Route::get('/editCart', [HomeController::class, 'editCart']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

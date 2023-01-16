@@ -121,10 +121,12 @@
           </a>
         </div>
         <div class="col-lg-4 col-6 text-left">
-          <form action="">
+          <form action="{{url('/shop')}}">
             <div class="input-group">
               <input
+              name="keywords"
                 type="text"
+                value="{{request()->get('keywords')}}"
                 class="form-control"
                 placeholder="Search for products"
               />
@@ -172,23 +174,9 @@
                   data-toggle="dropdown"
                   >Dresses <i class="fa fa-angle-right float-right mt-1"></i
                 ></a>
-                <div
-                  class="dropdown-menu position-absolute rounded-0 border-0 m-0"
-                >
-                  <a href="" class="dropdown-item">Men's Dresses</a>
-                  <a href="" class="dropdown-item">Women's Dresses</a>
-                  <a href="" class="dropdown-item">Baby's Dresses</a>
-                </div>
-              </div>
-              <a href="" class="nav-item nav-link">Shirts</a>
-              <a href="" class="nav-item nav-link">Jeans</a>
-              <a href="" class="nav-item nav-link">Swimwear</a>
-              <a href="" class="nav-item nav-link">Sleepwear</a>
-              <a href="" class="nav-item nav-link">Sportswear</a>
-              <a href="" class="nav-item nav-link">Jumpsuits</a>
-              <a href="" class="nav-item nav-link">Blazers</a>
-              <a href="" class="nav-item nav-link">Jackets</a>
-              <a href="" class="nav-item nav-link">Shoes</a>
+              @foreach($categories as $category)
+              <a href="{{url('/shop?category_id='.$category['id'])}}" class="nav-item nav-link">{{$category['name']}}</a>
+              @endforeach
             </div>
           </nav>
         </div>
@@ -242,7 +230,7 @@
                   <span
                     class="badge text-secondary border border-secondary rounded-circle"
                     style="padding-bottom: 2px"
-                    >0</span
+                    >{{count(session()->get('ids',[]))}}</span
                   >
                 </a>
               </div>
@@ -393,5 +381,6 @@
     <!-- Template Javascript -->
     <script src="{{url('js/main.js')}}"></script>
     <script src="{{url('js/home.js')}}"></script>
+    @yield('scripts')
   </body>
 </html>

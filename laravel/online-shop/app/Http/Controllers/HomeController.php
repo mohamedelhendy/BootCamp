@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Size;
 use App\Models\Color;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -18,6 +19,79 @@ class HomeController extends Controller
         ]);
 
     }
+    function cart()
+    {
+        $products = Product::getCart();
+        //subtotal
+        $subTotal = 0;
+        foreach ($products as $product) {
+            $subTotal += $product['quantity'] * ($product['price'] * (1 - $product['discount']));
+        }
+        //shipping
+        $shipping = 0;
+        foreach ($products as $product) {
+            $shipping += $product['quantity'] * 10;
+        }
+        $total = $shipping + $subTotal;
+
+        return view('cart')->with([
+            'products'=> $products,
+            'total'=> $total,
+            'subTotal'=> $subTotal,
+            'shipping'=> $shipping
+        ]);
+
+    }
+    public static function getCart(){
+        $products = [];
+        $ids = session()->get('ids', []);
+        $ids = array_count_values($ids);
+        foreach($ids as $id=>$quantity){
+            $product= Product::findOrFail($id);
+            $product['quantity'] = $quantity;
+            array_push($products, $product);
+        }
+    }
+    function editCart(){
+        $products = Product::getCart();
+        $id = $_GET['id'];
+        $comm = $_GET['comm'];
+        $ids = session()->get('ids', []);
+
+        switch($comm){
+            case 1:
+                $gto = false;
+                foreach($products as $product){
+                    if($product['id']==$id){
+                        if ($product['quantity'] > 1)
+                            $gto = true;
+                    } }
+                if ($gto) {
+                    for ($i = 0; $i < count($ids); $i++) {
+                        if ($ids[$i] == $id) {
+                            \array_splice($ids, $i, 1);
+                            break;
+                        }
+                    }
+                };break;
+            case 2: array_push($ids, $id);break;
+            case 3:
+                for ($i = 0; $i < count($ids); $i++) {
+                    if ($ids[$i] == $id) {
+                        \array_splice($ids, $i, 1);
+                        $i -= 1;
+                    }
+                }
+                    ;break;
+            }
+        
+        
+
+        Session::put('ids', $ids);
+        return redirect()->route('cart');
+
+    }
+
     function shop(Request $request)
     {
         $query = Product::query();

@@ -11,6 +11,23 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
+    public static function subTotal($products){
+        $subTotal = 0;
+        foreach ($products as $product) {
+            $subTotal += $product['quantity'] * ($product['price'] * (1 - $product['discount']));
+        }
+        return $subTotal;
+    }
+    public static function shipping($products){
+        $shipping = 0;
+        foreach ($products as $product) {
+            $shipping += $product['quantity'] * 10;
+        }
+        return $shipping;
+    }
+    public static function total($products){
+        return HomeController::shipping($products) + HomeController::shipping($products);
+    }
     function index()
     {
         return view('index')->with([
@@ -36,19 +53,12 @@ class HomeController extends Controller
         dd($request->all());
 
     }
-    function checkout()
-    {$products = Product::getCart();
-        //subtotal
-        $subTotal = 0;
-        foreach ($products as $product) {
-            $subTotal += $product['quantity'] * ($product['price'] * (1 - $product['discount']));
-        }
-        //shipping
-        $shipping = 0;
-        foreach ($products as $product) {
-            $shipping += $product['quantity'] * 10;
-        }
-        $total = $shipping + $subTotal;
+    function checkout(){
+    $products = HomeController::getCart();
+    $subTotal = HomeController::subTotal($products);
+        $shipping = HomeController::shipping($products);
+        $total = HomeController::total($products);
+
         return view('checkout')->with([
             'products' => $products,
             'total'=> $total,
@@ -59,18 +69,10 @@ class HomeController extends Controller
     }
     function cart()
     {
-        $products = Product::getCart();
-        //subtotal
-        $subTotal = 0;
-        foreach ($products as $product) {
-            $subTotal += $product['quantity'] * ($product['price'] * (1 - $product['discount']));
-        }
-        //shipping
-        $shipping = 0;
-        foreach ($products as $product) {
-            $shipping += $product['quantity'] * 10;
-        }
-        $total = $shipping + $subTotal;
+        $products = HomeController::getCart();
+        $subTotal = HomeController::subTotal($products);
+        $shipping = HomeController::shipping($products);
+        $total = HomeController::total($products);
 
         return view('cart')->with([
             'products'=> $products,
@@ -89,6 +91,7 @@ class HomeController extends Controller
             $product['quantity'] = $quantity;
             array_push($products, $product);
         }
+        return $products;
     }
     function editCart(){
         $products = Product::getCart();

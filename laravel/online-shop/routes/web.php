@@ -24,7 +24,7 @@ Route::get('/shop', [HomeController::class, 'shop']);
 Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
 Route::get('/editCart', [HomeController::class, 'editCart']);
 Route::get('/checkout', [HomeController::class, 'checkout']);
-Route::post('/checkout', [HomeController::class, 'sendOrder']);
+Route::post('/checkout/send', [HomeController::class, 'sendOrder']);
 
 
 Route::get('/dashboard', function () {

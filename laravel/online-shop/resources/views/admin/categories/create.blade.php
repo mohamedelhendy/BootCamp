@@ -20,16 +20,19 @@
                         <div class="col-md-6 form-group">
                             <label>Category Name</label>
                             <input type="text" class="form-control" name="name" value="{{old('name')}}">
+                            @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
-                        @error('name')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
                         <div class="col-md-6 form-group">
                             <label>Image</label>
                             <input type="file" name="image">
+                            @error('image')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                             <button class="btn btn-success">Add</button>
-                    <a class="btn btn-secondary" href="{{ url('admin/categories') }}">Cancel</a>
+                    <a class="btn btn-secondary" >Cancel</a>
                 </form>
             </div>
         </section>

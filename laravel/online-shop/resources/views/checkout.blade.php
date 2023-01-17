@@ -15,10 +15,10 @@
     <!-- Breadcrumb End -->
 
     <!-- Checkout Start -->
-    @csrf
-    <form method="post" action="{{ url('checkout') }}">
-        <div class="container-fluid">
-
+    <div class="container-fluid">
+        
+        <form method="post" action="{{ url('checkout/send') }}">
+            @csrf
             <div class="row px-xl-5">
                 <div class="col-lg-8">
                     <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Billing
@@ -29,10 +29,10 @@
                                 <label>First Name</label>
                                 <input class="form-control" type="text" placeholder="John" name="first_name"
                                     value="{{ old('first_name') }}">
+                                    @error('first_name')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('first_name')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             <div class="col-md-6 form-group">
                                 <label>Last Name</label>
                                 <input class="form-control" type="text" placeholder="Doe" name="last_name"
@@ -86,10 +86,10 @@
                                 <label>City</label>
                                 <input class="form-control" type="text" placeholder="New York"name="city"
                                     value="{{ old('city') }}">
+                                    @error('city')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('city')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
                             <div class="col-md-6 form-group">
                                 <label>State</label>
                                 <input class="form-control" type="text" placeholder="New York"name="state"
@@ -216,9 +216,9 @@
                                     <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
                                 </div>
                             </div>
-                            <button class="btn btn-block btn-primary font-weight-bold py-3">Place Order</button>
                         </div>
                     </div>
+                    <button type="submit" class="btn btn-block btn-primary font-weight-bold py-3">Place Order</button>
                 </div>
             </div>
         </div>

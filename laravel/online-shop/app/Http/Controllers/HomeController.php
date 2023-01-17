@@ -19,7 +19,7 @@ class HomeController extends Controller
         ]);
 
     }
-    function sendOrder($request)
+    function sendOrder(Request $request)
     {
         $rules = [
             'first_name' => 'required',
@@ -33,7 +33,7 @@ class HomeController extends Controller
             'zipcode' => 'required'
         ];
         $request->validate($rules);
-        dd($_REQUEST);
+        dd($request->all());
 
     }
     function checkout()
